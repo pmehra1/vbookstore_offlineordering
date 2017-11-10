@@ -1,0 +1,4 @@
+ID,Item,Author,Quantity,Price per item,Date,Customer ID
+1,Code Complete (Http CSV),Steve Smith (Http CSV),50,40,11-Nov-17,CUSTOMER-CSV
+2,Clean Code (Http CSV),Dan Brown (Http CSV),10,50,11-Nov-17,CUSTOMER-CSV
+3,Camel in Action (Http CSV),Joe Smith (Http CSV),30,50,11-Nov-17,CUSTOMER-CSV
