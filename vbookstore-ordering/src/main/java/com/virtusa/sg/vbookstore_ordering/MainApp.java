@@ -8,6 +8,7 @@ import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.main.Main;
 
 import com.virtusa.sg.vbookstore_billing.routes.BillingRouteBuilder;
+import com.virtusa.sg.vbookstore_billing.routes.BillingSummaryRouteBuilder;
 import com.virtusa.sg.vbookstore_orders.routes.CSVRouteBuilder;
 import com.virtusa.sg.vbookstore_orders.routes.EmailRouteBuilder;
 import com.virtusa.sg.vbookstore_orders.routes.FTPRouteBuilder;
@@ -27,6 +28,7 @@ public class MainApp {
 		main.addRouteBuilder(new CSVRouteBuilder());
 		main.addRouteBuilder(new FTPRouteBuilder());
 		main.addRouteBuilder(new BillingRouteBuilder());
+		main.addRouteBuilder(new BillingSummaryRouteBuilder());
 
 		main.bind("jms", JmsComponent.jmsComponentAutoAcknowledge(createConnectionFactoryPool()));
 

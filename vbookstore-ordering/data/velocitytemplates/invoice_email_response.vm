@@ -1,0 +1,14 @@
+Dear ${invoiceSummary.customerid}
+
+We received your order on ${invoiceSummary.dateReceived}. 
+
+${invoiceSummary.successItemsCount} were processed successfully.
+
+#if(${invoiceSummary.errorItem} && ${invoiceSummary.errorItem.errorItem})
+Items not processed:
+	#foreach($erroritem in ${invoiceSummary.errorItem.errorItem})
+- $erroritem
+	#end
+#end
+
+Total bill for the order is ${invoiceSummary.totalAmount}
