@@ -9,6 +9,7 @@ import org.apache.camel.main.Main;
 
 import com.virtusa.sg.vbookstore_billing.routes.BillingRouteBuilder;
 import com.virtusa.sg.vbookstore_billing.routes.BillingSummaryRouteBuilder;
+import com.virtusa.sg.vbookstore_billing.routes.VBookstoreDBRouteBuilder;
 import com.virtusa.sg.vbookstore_orders.routes.CSVRouteBuilder;
 import com.virtusa.sg.vbookstore_orders.routes.EmailRouteBuilder;
 import com.virtusa.sg.vbookstore_orders.routes.FTPRouteBuilder;
@@ -24,6 +25,7 @@ public class MainApp {
 	public static void main(String... args) throws Exception {
 		Main main = new Main();
 
+		main.addRouteBuilder(new VBookstoreDBRouteBuilder());
 		main.addRouteBuilder(new EmailRouteBuilder());
 		main.addRouteBuilder(new CSVRouteBuilder());
 		main.addRouteBuilder(new FTPRouteBuilder());
