@@ -11,8 +11,8 @@ import org.apache.velocity.VelocityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.virtusa.sg.vbookstore_billing.types.ErrorItems;
-import com.virtusa.sg.vbookstore_billing.types.InvoiceSummary;
+import com.virtusa.sg.vbookstore.vbookstore_common.types.ErrorItems;
+import com.virtusa.sg.vbookstore.vbookstore_common.types.InvoiceSummary;
 
 public class BillingSummaryProcessorBean {
 

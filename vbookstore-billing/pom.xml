@@ -77,6 +77,13 @@
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-jaxb</artifactId>
 		</dependency>
+		
+		<!-- common module -->
+		<dependency>
+			<groupId>com.virtusa.sg.vbookstore</groupId>
+			<artifactId>vbookstore-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 	</dependencies>
 

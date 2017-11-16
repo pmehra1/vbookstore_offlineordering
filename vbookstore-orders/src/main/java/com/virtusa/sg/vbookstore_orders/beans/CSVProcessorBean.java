@@ -10,9 +10,9 @@ import org.apache.camel.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.virtusa.sg.vbookstore_orders.types.Invoice;
-import com.virtusa.sg.vbookstore_orders.types.Items;
-import com.virtusa.sg.vbookstore_orders.types.LineItem;
+import com.virtusa.sg.vbookstore.vbookstore_common.types.Invoice;
+import com.virtusa.sg.vbookstore.vbookstore_common.types.Items;
+import com.virtusa.sg.vbookstore.vbookstore_common.types.LineItem;
 
 public class CSVProcessorBean {
 

@@ -6,9 +6,9 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
 import org.apache.camel.model.dataformat.CsvDataFormat;
 
+import com.virtusa.sg.vbookstore.vbookstore_common.constants.Constants;
+import com.virtusa.sg.vbookstore.vbookstore_common.types.Invoice;
 import com.virtusa.sg.vbookstore_orders.beans.CSVProcessorBean;
-import com.virtusa.sg.vbookstore_orders.constants.Constants;
-import com.virtusa.sg.vbookstore_orders.types.Invoice;
 
 public class CSVRouteBuilder extends RouteBuilder {
 

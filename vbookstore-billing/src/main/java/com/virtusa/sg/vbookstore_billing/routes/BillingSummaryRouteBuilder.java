@@ -5,10 +5,10 @@ import javax.xml.bind.JAXBContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
 
+import com.virtusa.sg.vbookstore.vbookstore_common.constants.Constants;
+import com.virtusa.sg.vbookstore.vbookstore_common.types.InvoiceSummary;
 import com.virtusa.sg.vbookstore_billing.beans.BillingEmailProcessorBean;
 import com.virtusa.sg.vbookstore_billing.beans.BillingSummaryProcessorBean;
-import com.virtusa.sg.vbookstore_billing.constants.Constants;
-import com.virtusa.sg.vbookstore_billing.types.InvoiceSummary;
 
 public class BillingSummaryRouteBuilder extends RouteBuilder {
 

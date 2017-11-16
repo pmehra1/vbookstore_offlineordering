@@ -2,8 +2,8 @@ package com.virtusa.sg.vbookstore_orders.routes;
 
 import org.apache.camel.builder.RouteBuilder;
 
+import com.virtusa.sg.vbookstore.vbookstore_common.constants.Constants;
 import com.virtusa.sg.vbookstore_orders.beans.EmailProcessorBean;
-import com.virtusa.sg.vbookstore_orders.constants.Constants;
 
 public class EmailRouteBuilder extends RouteBuilder {
 
