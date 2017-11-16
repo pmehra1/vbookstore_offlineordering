@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vbookstore>
+	<line-item>
+		<item-id>1</item-id>
+		<item-name>Code Complete</item-name>
+		<item-author>Steve Smith</item-author>
+		<item-quantity>100</item-quantity>
+		<item-price>40</item-price>
+	</line-item>
+	<line-item>
+		<item-id>2</item-id>
+		<item-name>Clean Code</item-name>
+		<item-author>Dan Brown</item-author>
+		<item-quantity>100</item-quantity>
+		<item-price>50</item-price>
+	</line-item>
+	<line-item>
+		<item-id>3</item-id>
+		<item-name>Camel in Action</item-name>
+		<item-author>Joe Smith</item-author>
+		<item-quantity>100</item-quantity>
+		<item-price>50</item-price>
+	</line-item>
+</vbookstore>

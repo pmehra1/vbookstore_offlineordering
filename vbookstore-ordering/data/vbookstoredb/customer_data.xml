@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+	<customer>
+		<customer-id>CUSTOMER-EXCEL</customer-id>
+		<customer-email>customerexcel@email.com</customer-email>
+	</customer>
+	<customer>
+		<customer-id>CUSTOMER-FTPXML</customer-id>
+		<customer-email>customerftpxml@email.com</customer-email>
+	</customer>
+	<customer>
+		<customer-id>CUSTOMER-CSV</customer-id>
+		<customer-email>customercsv@email.com</customer-email>
+	</customer>
+</customers>

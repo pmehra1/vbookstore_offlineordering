@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+	<customer>
+		<customer-id>ABC123</customer-id>
+		<customer-email>abc123@email.com</customer-email>
+	</customer>
+</customers>
