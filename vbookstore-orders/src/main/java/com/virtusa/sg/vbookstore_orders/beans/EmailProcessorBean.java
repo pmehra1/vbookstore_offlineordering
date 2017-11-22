@@ -2,6 +2,8 @@ package com.virtusa.sg.vbookstore_orders.beans;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +37,37 @@ public class EmailProcessorBean {
 
 		return invoice;
 	}
+
+	// @Handler
+	// public Invoice convertExcelToCannonicalXML(Exchange exchange) {
+	// log.info("EmailProcessorBean: convertExcelToCannonicalXML");
+	//
+	// Map<String, DataHandler> attachments = exchange.getIn().getAttachments();
+	// log.info("attachments = " + attachments);
+	// if (attachments.size() > 0) {
+	// log.info("attachments size more than 0");
+	// for (String name : attachments.keySet()) {
+	// log.info("name = " + name);
+	// DataHandler dh = attachments.get(name); // get the file name
+	// String filename = dh.getName(); // get the content and convert it to byte[]
+	// log.info("file name = " + filename);
+	// try {
+	// byte[] data =
+	// exchange.getContext().getTypeConverter().convertTo(byte[].class,
+	// dh.getInputStream());
+	// } catch (TypeConversionException e) {
+	// log.error("type conversion exception");
+	// } catch (IOException e) {
+	// log.error("io exception");
+	// }
+	// }
+	//
+	// }
+	//
+	// // Invoice invoice = constructInvoice(in);
+	//
+	// return null;
+	// }
 
 	private Invoice constructInvoice(InputStream in) {
 		Invoice invoice = new Invoice();
@@ -76,6 +109,7 @@ public class EmailProcessorBean {
 				lineItem.setItemPrice(Double.parseDouble(getCellContentByType(itemPriceCell)));
 
 				Cell dateCell = row.getCell(5);
+
 				lineItem.setDate(getCellContentByType(dateCell));
 
 				Cell customeridCell = row.getCell(6);
@@ -113,7 +147,7 @@ public class EmailProcessorBean {
 			break;
 		case NUMERIC:
 			if (DateUtil.isCellDateFormatted(cell)) {
-				cellValue = cell.getDateCellValue().toString();
+				cellValue = formatDateCellValue(cell.getDateCellValue().toString());
 			} else {
 				cellValue = String.valueOf(cell.getNumericCellValue());
 			}
@@ -123,6 +157,20 @@ public class EmailProcessorBean {
 		}
 
 		return cellValue;
+	}
+
+	private String formatDateCellValue(String dateCellValue) {
+		SimpleDateFormat excelFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
+		SimpleDateFormat sf = new SimpleDateFormat("dd-MMM-yy");
+
+		try {
+			Date date = excelFormat.parse(dateCellValue);
+			return sf.format(date);
+		} catch (ParseException e) {
+			log.error("parse exception. message = " + e.getMessage());
+		}
+
+		return "";
 	}
 
 }
