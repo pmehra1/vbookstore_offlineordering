@@ -1,0 +1,29 @@
+<order>
+	<customerid>CUSTOMER-FTPXML</customerid>
+	<items>
+		<item>
+			<id>1</id>
+			<item>Code Complete (FTP XML)</item>
+			<author>Steve Smith (FTP XML)</author>
+			<quantity>50</quantity>
+			<price_per_item>40</price_per_item>
+			<date>10-Nov-2017</date>
+		</item>
+		<item>
+			<id>2</id>
+			<item>Clean Code (FTP XML)</item>
+			<author>Dan Brown (FTP XML)</author>
+			<quantity>10</quantity>
+			<price_per_item>50</price_per_item>
+			<date>11-Nov-2017</date>
+		</item>
+		<item>
+			<id>3</id>
+			<item>Camel in Action (FTP XML)</item>
+			<author>Joe Smith (FTP XML)</author>
+			<quantity>30</quantity>
+			<price_per_item>50</price_per_item>
+			<date>11-Nov-2017</date>
+		</item>
+	</items>
+</order>
