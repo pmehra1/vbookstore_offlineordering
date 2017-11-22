@@ -13,7 +13,7 @@ public class BillingEmailProcessorBean {
 	public String processBillingEmail(@Body String emailBody) {
 		log.info("BillingEmailProcessorBean: processBillingEmail: email body received as string = " + emailBody);
 
-		return "";
+		return emailBody;
 	}
 
 }

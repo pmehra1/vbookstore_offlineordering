@@ -2,14 +2,10 @@ package com.virtusa.sg.vbookstore_billing.beans;
 
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import javax.xml.namespace.NamespaceContext;
-import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 
 import org.apache.camel.Body;
 import org.apache.camel.Handler;
@@ -19,54 +15,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.virtusa.sg.vbookstore.vbookstore_common.constants.Constants;
-import com.virtusa.sg.vbookstore.vbookstore_common.types.Customer;
 import com.virtusa.sg.vbookstore.vbookstore_common.types.ErrorItems;
 import com.virtusa.sg.vbookstore.vbookstore_common.types.InvoiceSummary;
 import com.virtusa.sg.vbookstore.vbookstore_common.types.LineItem;
+import com.virtusa.sg.vbookstore_billing.dao.BillingDao;
 
 public class BillingProcessorBean {
 
 	private static Logger log = LoggerFactory.getLogger(BillingProcessorBean.class);
 
-	private static XPath xpath;
-
 	@Handler
 	public InvoiceSummary processBillingOrder(@Body String order) {
 		log.info("BillingProcessorBean: processBillingOrder: order received from jms message as string = " + order);
 
-		initXPath();
 		return calculateInvoiceTotal(getLineItemsFromOrder(order), order);
-	}
-
-	private static void initXPath() {
-		XPathFactory xpathFactory = XPathFactory.newInstance();
-
-		if (xpath == null) {
-			xpath = xpathFactory.newXPath();
-			xpath.setNamespaceContext(new NamespaceContext() {
-
-				@Override
-				public Iterator getPrefixes(String namespaceURI) {
-					// TODO Auto-generated method stub
-					return null;
-				}
-
-				@Override
-				public String getPrefix(String namespaceURI) {
-					// TODO Auto-generated method stub
-					return null;
-				}
-
-				@Override
-				public String getNamespaceURI(String prefix) {
-					if (prefix.equals("invoice")) {
-						return "http://com.virtusa.sg/vbookstore/invoice";
-					}
-					return null;
-				}
-			});
-		}
 	}
 
 	private NodeList getLineItemsFromOrder(String order) {
@@ -75,7 +37,7 @@ public class BillingProcessorBean {
 		NodeList lineItems = null;
 
 		try {
-			lineItems = (NodeList) xpath.evaluate(expression, source, XPathConstants.NODESET);
+			lineItems = (NodeList) BillingDao.getXPath().evaluate(expression, source, XPathConstants.NODESET);
 		} catch (XPathExpressionException e) {
 			log.error("Error parsing xml. Message = " + e.getMessage());
 		}
@@ -116,7 +78,7 @@ public class BillingProcessorBean {
 
 		String customerId = getCustomerIdFromOrder(order);
 		invoiceSummary.setCustomerid(customerId);
-		invoiceSummary.setCustomeremail(getCustomerEmailById(customerId));
+		invoiceSummary.setCustomeremail(BillingDao.getCustomerEmailById(customerId));
 
 		invoiceSummary.setDateReceived(getDateReceivedFromOrder(order));
 
@@ -213,21 +175,11 @@ public class BillingProcessorBean {
 	}
 
 	private LineItem getLineItemById(Integer lineItemId) {
-		String expression = "//line-item[descendant::item-id[text()=" + "'" + lineItemId + "'" + "]]";
-
-		InputSource source = new InputSource(new StringReader(Constants.BOOKSTORE_DATA_XML));
-
-		NodeList lineItemList = null;
-
-		try {
-			lineItemList = (NodeList) xpath.evaluate(expression, source, XPathConstants.NODESET);
-		} catch (XPathExpressionException e) {
-			log.error("Error parsing xml. Message = " + e.getMessage());
-		}
+		NodeList lineItemList = BillingDao.getLineItemById(lineItemId);
 
 		if (lineItemList != null) {
 			Node node = lineItemList.item(0);
-			log.info("line item node = " + node);
+			//log.info("line item node = " + node);
 			return (getLineItemFromNode(node));
 		}
 
@@ -242,7 +194,7 @@ public class BillingProcessorBean {
 		Node customerNode = null;
 
 		try {
-			customerNode = (Node) xpath.evaluate(expression, source, XPathConstants.NODE);
+			customerNode = (Node) BillingDao.getXPath().evaluate(expression, source, XPathConstants.NODE);
 		} catch (XPathExpressionException e) {
 			log.error("Error parsing xml. Message = " + e.getMessage());
 		}
@@ -255,53 +207,6 @@ public class BillingProcessorBean {
 
 	}
 
-	private String getCustomerEmailById(String customerId) {
-		String expression = "//customer[descendant::customer-id[text()=" + "'" + customerId + "'" + "]]";
-
-		InputSource source = new InputSource(new StringReader(Constants.CUSTOMER_DATA_XML));
-
-		NodeList customerList = null;
-
-		try {
-			customerList = (NodeList) xpath.evaluate(expression, source, XPathConstants.NODESET);
-			log.info("customerList = " + customerList + " for customer id = " + customerId);
-		} catch (XPathExpressionException e) {
-			log.error("Error parsing xml. Message = " + e.getMessage());
-		}
-
-		if (customerList != null) {
-			Node node = customerList.item(0);
-			log.info("customer node = " + node);
-
-			Customer customer = getCustomerFromNode(node);
-			return customer.getCustomerEmail();
-		}
-
-		return null;
-	}
-
-	private Customer getCustomerFromNode(Node customerNode) {
-		Customer customer = new Customer();
-
-		NodeList customerNodes = customerNode.getChildNodes();
-		if (customerNodes != null) {
-			for (int i = 0; i < customerNodes.getLength(); i++) {
-				Node item = customerNodes.item(i);
-				String itemContent = item.getTextContent();
-				switch (item.getNodeName()) {
-				case "customer-id":
-					customer.setCustomerId(itemContent);
-					break;
-				case "customer-email":
-					customer.setCustomerEmail(itemContent);
-					break;
-				}
-			}
-		}
-
-		return customer;
-	}
-
 	private String getDateReceivedFromOrder(String order) {
 		String dateReceived = "";
 
@@ -310,7 +215,7 @@ public class BillingProcessorBean {
 		Node dateReceivedNode = null;
 
 		try {
-			dateReceivedNode = (Node) xpath.evaluate(expression, source, XPathConstants.NODE);
+			dateReceivedNode = (Node) BillingDao.getXPath().evaluate(expression, source, XPathConstants.NODE);
 		} catch (XPathExpressionException e) {
 			log.error("Error parsing xml. Message = " + e.getMessage());
 		}
