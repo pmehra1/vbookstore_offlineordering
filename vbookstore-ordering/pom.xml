@@ -70,14 +70,14 @@
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-pool</artifactId>
 		</dependency>
-		
+
 		<!-- orders module -->
 		<dependency>
 			<groupId>com.virtusa.sg</groupId>
 			<artifactId>vbookstore-orders</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<!-- billing module -->
 		<dependency>
 			<groupId>com.virtusa.sg</groupId>
@@ -118,6 +118,31 @@
 					<mainClass>com.virtusa.sg.vbookstore_ordering.MainApp</mainClass>
 					<includePluginDependencies>false</includePluginDependencies>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>
+										com.virtusa.sg.vbookstore_ordering.MainApp
+									</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
