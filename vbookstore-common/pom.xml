@@ -9,7 +9,6 @@
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>A Camel Route</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,4 +63,5 @@
 		</plugins>
 	</build>
 
+	<name>Common module</name>
 </project>
