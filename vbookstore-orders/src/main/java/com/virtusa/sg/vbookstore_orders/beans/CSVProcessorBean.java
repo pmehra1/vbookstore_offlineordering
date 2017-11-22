@@ -20,7 +20,7 @@ public class CSVProcessorBean {
 
 	@Handler
 	public Invoice convertCSVToCannonicalXML(@Body List<Map<String, Object>> csvData) {
-		log.info("CSVProcessorBean: convertCSVToCannonicalXML: csv file as map = " + csvData);
+		log.debug("CSVProcessorBean: convertCSVToCannonicalXML: csv file as map = " + csvData);
 
 		Invoice invoice = constructInvoice(csvData);
 

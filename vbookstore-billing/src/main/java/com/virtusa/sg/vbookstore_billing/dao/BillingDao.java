@@ -84,7 +84,7 @@ public class BillingDao {
 
 		try {
 			customerList = (NodeList) xpath.evaluate(expression, source, XPathConstants.NODESET);
-			log.info("customerList = " + customerList + " for customer id = " + customerId);
+			log.debug("customerList = " + customerList + " for customer id = " + customerId);
 		} catch (XPathExpressionException e) {
 			log.error("Error parsing xml " + Constants.CUSTOMER_DATA_XML + ". Message = " + e.getMessage());
 		}

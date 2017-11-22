@@ -31,7 +31,7 @@ public class EmailProcessorBean {
 
 	@Handler
 	public Invoice convertExcelToCannonicalXML(@Body InputStream in) {
-		log.info("EmailProcessorBean: convertExcelToCannonicalXML: excel file as input stream = " + in);
+		log.debug("EmailProcessorBean: convertExcelToCannonicalXML: excel file as input stream = " + in);
 
 		Invoice invoice = constructInvoice(in);
 

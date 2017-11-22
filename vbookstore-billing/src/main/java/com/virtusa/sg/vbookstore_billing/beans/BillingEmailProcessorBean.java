@@ -11,7 +11,7 @@ public class BillingEmailProcessorBean {
 
 	@Handler
 	public String processBillingEmail(@Body String emailBody) {
-		log.info("BillingEmailProcessorBean: processBillingEmail: email body received as string = " + emailBody);
+		log.info("BillingEmailProcessorBean: processBillingEmail: email body = " + emailBody);
 
 		return emailBody;
 	}

@@ -26,7 +26,7 @@ public class BillingProcessorBean {
 
 	@Handler
 	public InvoiceSummary processBillingOrder(@Body String order) {
-		log.info("BillingProcessorBean: processBillingOrder: order received from jms message as string = " + order);
+		log.info("BillingProcessorBean: processBillingOrder: cannonical xml request = " + order);
 
 		return calculateInvoiceTotal(getLineItemsFromOrder(order), order);
 	}
@@ -82,7 +82,7 @@ public class BillingProcessorBean {
 
 		invoiceSummary.setDateReceived(getDateReceivedFromOrder(order));
 
-		log.info("invoice summary = " + invoiceSummary);
+		log.debug("invoice summary = " + invoiceSummary);
 
 		return invoiceSummary;
 
@@ -141,7 +141,7 @@ public class BillingProcessorBean {
 	private boolean lineItemQtyOrderedInStock(Integer qtyOrdered, Integer lineItemId) {
 		boolean qtyInStock = true;
 
-		log.info("qtyOrdered = " + qtyOrdered + ", line item id = " + lineItemId);
+		log.debug("qtyOrdered = " + qtyOrdered + ", line item id = " + lineItemId);
 		if (qtyOrdered > getLineItemStock(lineItemId)) {
 			qtyInStock = false;
 		}
@@ -153,12 +153,12 @@ public class BillingProcessorBean {
 		Integer lineItemStock = 0;
 
 		LineItem lineItem = getLineItemById(lineItemId);
-		log.info(
+		log.debug(
 				"line item from db xml: line item id = " + lineItem.getId() + ", quantity = " + lineItem.getQuantity());
 		if (lineItem != null) {
 			lineItemStock = lineItem.getQuantity();
 		}
-		log.info("lineItemStock = " + lineItemStock);
+		log.debug("lineItemStock = " + lineItemStock);
 
 		return lineItemStock;
 	}

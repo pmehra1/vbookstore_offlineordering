@@ -18,7 +18,7 @@ public class BillingSummaryRouteBuilder extends RouteBuilder {
 		JAXBContext jaxbCtx = JAXBContext.newInstance(InvoiceSummary.class);
 		JaxbDataFormat jaxbFormat = new JaxbDataFormat(jaxbCtx);
 
-		from("jms:billingresponse").log("billing summary route").unmarshal(jaxbFormat)
+		from("jms:billingresponse").log("billing response xml ${body}").unmarshal(jaxbFormat)
 				.bean(BillingSummaryProcessorBean.class).to("velocity:file:" + Constants.getBasePathForDataFiles()
 						+ "velocitytemplates\\invoice_email_response.vm")
 				.bean(BillingEmailProcessorBean.class);
