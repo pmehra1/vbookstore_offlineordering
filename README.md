@@ -11,9 +11,12 @@ The Billing module receives the cannonical xml as input over JMS, calculates the
 Note: Maven is needed to package the application to an executable jar file. Java should also be installed to run the application. 
 
 1. Clone or download the project.
-2. Go to the module vbookstore-ordering. Open a command prompt.
-3. Type mvn package and enter. It will create an executable jar vbookstore-offline-ordering-{project version}.jar under vbookstore-ordering folder.
-4. Type java -jar vbookstore-offline-ordering-{project version}.jar. The application runs, displaying the 3 inputs received, the cannonical xml and the email body generated.
-5. Ctrl+C to stop the application.
+2. Open a command prompt.
+3. Go to the module vbookstore-common. Type mvn install and enter.
+4. Go to the module vbookstore-billing. Type mvn install and enter.
+5. Go to the module vbookstore-orders. Type mvn install and enter.
+6. Go to the module vbookstore-ordering. Type mvn package and enter. It will create an executable jar vbookstore-offline-ordering-{project version}.jar under vbookstore-ordering folder.
+7. Type java -jar vbookstore-offline-ordering-{project version}.jar. The application runs, displaying the 3 inputs received, the cannonical xml and the email body generated.
+8. Ctrl+C to stop the application.
 
 
