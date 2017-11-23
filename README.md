@@ -14,5 +14,6 @@ Note: Maven is needed to package the application to an executable jar file. Java
 2. Go to the module vbookstore-ordering. Open a command prompt.
 3. Type mvn package and enter. It will create an executable jar vbookstore-offline-ordering-{project version}.jar under vbookstore-ordering folder.
 4. Type java -jar vbookstore-offline-ordering-{project version}.jar. The application runs, displaying the 3 inputs received, the cannonical xml and the email body generated.
+5. Ctrl+C to stop the application.
 
 
