@@ -2,7 +2,13 @@ Dear ${invoiceSummary.customerid}
 
 We received your order on ${invoiceSummary.dateReceived}. 
 
-${invoiceSummary.successItemsCount} were processed successfully.
+#if(${invoiceSummary.successItemsCount} > 0)
+#if(${invoiceSummary.successItemsCount} == 1)
+${invoiceSummary.successItemsCount} item was processed successfully.
+#else
+${invoiceSummary.successItemsCount} items were processed successfully.
+#end
+#end
 
 #if(${invoiceSummary.errorItem} && ${invoiceSummary.errorItem.errorItem})
 Items not processed:
