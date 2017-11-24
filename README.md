@@ -12,11 +12,8 @@ Note: Maven is needed to package the application to an executable jar file. Java
 
 1. Clone or download the project.
 2. Open a command prompt.
-3. Go to the module vbookstore-common. Type mvn install and enter.
-4. Go to the module vbookstore-billing. Type mvn install and enter.
-5. Go to the module vbookstore-orders. Type mvn install and enter.
-6. Go to the module vbookstore-ordering. Type mvn package and enter. It will create an executable jar vbookstore-offline-ordering-{project version}.jar under vbookstore-ordering folder.
-7. Type java -jar vbookstore-offline-ordering-{project version}.jar. The application runs, displaying the 3 inputs received, the cannonical xml and the email body generated.
+3. Go to the module vbookstore-parent. Type mvn install and enter. This will install the 4 modules: Common, Orders, Billing and Ordering. It will create an executable jar vbookstore-offline-ordering-{project version}.jar under vbookstore-ordering folder.
+7. Go to the module vbookstore-ordering. Type java -jar vbookstore-offline-ordering-{project version}.jar. The application runs, displaying the 3 inputs received, the cannonical xml and the email body generated.
 8. Ctrl+C to stop the application.
 
 
