@@ -16,4 +16,6 @@ Note: Maven is needed to package the application to an executable jar file. Java
 7. Go to the module vbookstore-ordering. Type java -jar vbookstore-offline-ordering-{project version}.jar. The application runs, displaying the 3 inputs received, the cannonical xml and the email body generated.
 8. Ctrl+C to stop the application.
 
+#Code coverage with Cobertura
 
+Some tests have been defined in the vbookstore-orders and vbookstore-billing modules. To check for the code coverage for these tests, go to these modules and type the command mvn cobertura. The coverage report gets created inside the target/site folder.
